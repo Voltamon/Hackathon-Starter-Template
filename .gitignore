@@ -1,0 +1,6 @@
+**/node_modules
+**/dist
+**/server
+pb_data
+.env
+.vscode

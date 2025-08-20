@@ -1,0 +1,32 @@
+version: '3.8'
+services:
+  pocketbase:
+    image: ghcr.io/muchobien/pocketbase:latest
+    container_name: pocketbase
+    volumes:
+      - ./pb_data:/pb_data
+    ports:
+      - "8090:8090"
+    restart: unless-stopped
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: starter-backend
+    ports:
+      - "8080:8080"
+    depends_on:
+      - pocketbase
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: starter-frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    restart: unless-stopped

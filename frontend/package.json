@@ -1,0 +1,19 @@
+{
+  "name": "starter-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite --host --port 3000",
+    "build": "vite build",
+    "preview": "vite preview --port 3000"
+  },
+  "dependencies": {
+  "preact": "^10.15.2",
+  "picocss": "github:picocss/pico"
+  },
+  "devDependencies": {
+    "vite": "^5.1.0",
+    "typescript": "^5.1.6",
+    "@preact/preset-vite": "^2.1.0"
+  }
+}
