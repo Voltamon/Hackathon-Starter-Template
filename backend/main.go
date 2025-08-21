@@ -10,6 +10,9 @@ import (
 func main() {
 	r := gin.Default()
 
+	// start embedded PocketBase
+	StartPocketBase()
+
 	// Allow all CORS for development
 	r.Use(cors.New(cors.Config{
 		AllowOrigins:     []string{"*"},
@@ -19,8 +22,15 @@ func main() {
 		AllowCredentials: true,
 	}))
 
-	r.GET("/api/hello", func(c *gin.Context) {
-		c.JSON(http.StatusOK, gin.H{"message": "Hello from Go backend!"})
+	r.GET("/api/pocketbase", func(c *gin.Context) {
+		// example: access PocketBase instance
+		pb := GetPocketBase()
+		pbStatus := "not running"
+		if pb != nil {
+			pbStatus = "running"
+		}
+
+		c.JSON(http.StatusOK, gin.H{"pocketbase": pbStatus})
 	})
 
 	r.GET("/", func(c *gin.Context) {
